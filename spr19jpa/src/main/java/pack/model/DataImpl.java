@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -32,6 +33,7 @@ public class DataImpl implements DataInterface {
 			// Hibernate: /* insert pack.model.MemDto */ 
 			// 실제 SQL 처리 : insert into mem (addr, name, num) values (?, ?, ?)
 			
+			
 			// 레코드 수정
 //			tx.begin();
 //			MemDto mdto2 = em.find(MemDto.class, 4);
@@ -40,16 +42,25 @@ public class DataImpl implements DataInterface {
 			// Hibernate: /* update pack.model.MemDto */ 
 			// 실제 SQL 처리 : update mem set addr=?, name=? where num=?
 			
+			
 			// 레코드 삭제
 //			tx.begin();
 //			MemDto mdto3 = em.find(MemDto.class, 4);
 //			em.remove(mdto3);
 //			tx.commit();
 			
+			
 			// 레코드 하나 읽기
 			System.out.println("부분 자료 읽기(단일 엔티티) find() 메소드 사용");
 			MemDto mdto = em.find(MemDto.class, 1);  // 두 번째 인자로 PK 전달, '1'을 전달했으므로 PK인 num 값이 1인 데이터 출력을 위한 메소드 작성
 			System.out.println(mdto.getNumber() + " " + mdto.getName() + " " + mdto.getAddr());
+			
+			
+			System.out.println("부분 자료 읽기(복수 엔티티)");
+			List<MemDto> listPart = findByAddr(em, "진관");
+			for(MemDto m : listPart) {
+				System.out.println(m.getNumber() + " " + m.getName() + " " + m.getAddr());
+			}
 			
 			// 전체 레코드 읽기
 			System.out.println("전체 자료 읽기(JPQL 사용)");
@@ -78,6 +89,19 @@ public class DataImpl implements DataInterface {
 		
 		return list;
 	}
+	
+	public List<MemDto> findByAddr(EntityManager em, String ss) {
+		// Addr 필드가 특정 접두사로 시작하는 레코드 읽기
+		String jpql = "SELECT m FROM MemDto m WHERE m.addr LIKE : ss"; // 조건은 콜론(:)으로 준다. addr이 ss로 시작되는 것을 찾는다.
+		
+		TypedQuery<MemDto> query = em.createQuery(jpql, MemDto.class);
+		// TypedQuery<Entity> query = em.createQuery(jpql, EntityClass);
+		// 👆JPQL을 작성하고 실행하는 역할을 한다.
+		query.setParameter("ss", "%" + ss + "%"); // @@동 할 때
+		//query.setParameter("ss", ss + "%"); // SQL의 LIKE 연산 검색문자%
+		return query.getResultList(); // 쿼리 실행 후 리스트로(복수) 반환
+	}
+	
 	
 	public<T> List<T> findAll(EntityManager em, Class<T> cla) {
 		// select 문의 경우, SQL문이 아닌 JPQL임.
