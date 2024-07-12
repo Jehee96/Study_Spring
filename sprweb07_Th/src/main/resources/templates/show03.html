@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>show03</title>
+</head>
+<body>
+<h2>상품 자료 여러개<br>
+🙄 if, each, switch 연습</h2>
+<table border="1" style="text-align: center">
+	<tr>
+		<th>인덱스</th><th>아이디</th><th>상품명</th>
+	</tr>
+	<tr th:each="dto, status:${dtos}">
+		<td th:if="${status.odd}" th:text="홀수"></td> <!-- 참일 때 -->
+		<td th:unless="${status.odd}" th:text="짝수"></td> <!-- 참이 아닐 때 -->
+		<td th:text="${dto.id}"></td>
+		<td th:text="${dto.name}"></td>
+	</tr>
+</table>
+<br>
+<!-- index 홀짝.. -->
+<table border="1" style="text-align: center">
+	<tr>
+		<th>인덱스(INDEX)</th><th>인덱스(COUNT)</th><th>홀/짝</th>
+	</tr>
+	<tr th:each="dto, status:${dtos}">
+		<td th:text="${status.index}"></td>
+		<td th:text="${status.count}"></td>
+		<td th:if="${status.odd}" th:text="홀수"></td>
+		<td th:if="${status.even}" th:text="짝수"></td>
+	</tr>
+</table>
+<br>
+
+<table border="1" style="text-align: center">
+	<tr>
+		<th>인덱스</th><th>아이디</th><th>상품명</th>
+	</tr>
+	<tr th:each="dto, status:${dtos}">
+		<td th:switch="${status.even}">
+			<span th:case="true">짝수</span>
+			<span th:case="false">홀수</span>
+		</td>
+		<td th:text="${dto.id}"></td>
+		<td th:text="${dto.name}"></td>
+	</tr>
+</table>
+<hr>
+링크 처리<br>
+<b><a href="/thleaf/ex01">show01로 이동</a></b><br>
+<b><a th:href="@{/thleaf/ex01}">show01로 이동 @{}</a></b><br>
+<b><a th:href="@{https://www.naver.com}">naver로 이동 @{}</a></b><br>
+<b><a th:href="@{/thleaf/ex04(param01='금요일', param02='집가자!!')}">show04로 이동 @{}</a></b><br>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+🚩 GG 🚩
+<br>
+<hr>
+
+<form name="f"></form>
+<script>
+function func(){
+         f.action="test01"; 
+         f.method="post";  //POST방식
+         f.submit();
+}
+</script>
+
+<form name="f2"></form>
+<script>
+function func2(){
+         f2.action="test02"; 
+         f2.method="post";  //POST방식
+         f2.submit();
+}
+</script>
+
+<a href="test01">컨트롤러 만나기01 (GET방식)</a><br>
+<a href="javascript:func();">컨트롤러 만나기01 (POST방식)</a><br>
+
+<a href="test02">컨트롤러 만나기02</a><br>
+<a href="javascript:func2();">컨트롤러 만나기02 (POST방식)</a><br>
+<!-- 👆요청에 대한 매핑이 잘못됐을 때 405error. 컨트롤러에서 GET방식으로 설정되어있음 -->
+
+<a href="test03">컨트롤러 만나기03</a><br> <!-- ModelAndView 반환 -->
+
+<a href="test04">컨트롤러 만나기04</a><br><br>
+
+<hr>
+<br>
+<form action="test05" method="post">
+	<input type="submit" value="컨트롤러 만나기05">
+</form>
+<br>
+<form action="test06" method="post">
+	<input type="submit" value="컨트롤러 만나기06">
+</form>
+<br>
+<form action="test07" method="post">
+	<input type="submit" value="컨트롤러 만나기07">
+</form>
+<br>
+
+<a href="test08">data 얻기</a><br>
+<a href="test08_1">data 얻기02</a><br><br>
+
+<hr>
+두번째 컨트롤러와 매핑<br><br>
+<form action="test09" method="get">
+	<input type="submit" value="컨트롤러 만나기 09 - get">
+</form>
+<br>
+<form action="test09" method="post">
+	<input type="submit" value="컨트롤러 만나기 09 - post">
+</form>
+
+<hr>
+세번째 컨트롤러와 매핑<br><br>
+<a href="/java/korea">컨트롤러 만나기 10 - korea</a><br>
+<a href="/java/good">컨트롤러 만나기 10 - good</a><br>
+<a href="nice">컨트롤러 만나기 10 - nice</a><br>
+<a href="ok">컨트롤러 만나기 10 - ok</a><br>
+
+</body>
+</html>
