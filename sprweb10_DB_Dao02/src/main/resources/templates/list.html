@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>😝 회원 정보(@MVC - JDBC DAO SUPPORT) 😝</h2>
+
+<a href="/insert">추가</a> 또는 <a th:href="@{/insert}">추가</a><br>
+<!-- <a th:href="@{insert}"> : thymeleaf에서만 사용 가능. 브라우저가 해석 못함..
+html이 아니고 서버에서 이미 해석을 하고 클라이언트 브라우저에 던진것임 -->
+
+<table border="1">
+	<th:block th:if="${list.size > 0}"> <!-- list의 사이즈가 0보다 클 때 작업 시작 -->
+	
+		<tr style="background-color: orange;">
+			<th>아이디</th><th>회원명</th>
+		</tr>
+		<tr th:each="mem:${list}">
+			<td th:text="${mem.id}">ID</td>		
+			<!-- <td th:text="${mem.name}">NAME</td> -->
+			<td>
+				<a th:href="@{/detail(id=${mem.id})}" th:text="${mem.name}">NAME</a>
+			</td>
+		</tr>
+	</th:block>
+</table>
+
+</body>
+</html>

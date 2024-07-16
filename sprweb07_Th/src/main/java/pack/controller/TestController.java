@@ -70,4 +70,10 @@ public class TestController {
 		model.addAttribute("arg02", param02);
 		return "show04";
 	}
+		// 레이아웃
+		@GetMapping("/ex5")
+		public String method5() {
+			
+			return "show5";
+	}
 }
