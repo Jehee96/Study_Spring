@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>삭제하기</h2>
+<form th:action="@{/delete}" method="post">
+<input type="hidden" name="id" th:value="${member.id}"><br>
+<input type="submit" value="삭제">
+</form>
+<a th:href="@{/list}">목록으로 돌아가기</a>
+</body>
+</html>

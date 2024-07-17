@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>수정하기</h2>
+<form th:action="@{/update}" method="post" th:object="${member}">
+ID : [[*{id}]] <input type="hidden" name="id" th:field="*{id}"><br>
+PW : <input type="text" th:field="*{passwd}"><br> <!-- name, id 안써도됨. th:field를 쓰면 얘가 알아서 name과 id를 만들어준다. -->
+NAME : <input type="text" th:field="*{name}"><br>
+<br>
+<input type="submit" value="수정">
+<input type="button" value="이전" onclick="history.back()">
+</form>
+</body>
+</html>

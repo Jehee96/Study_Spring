@@ -58,8 +58,32 @@ public class MemberDAO extends JdbcDaoSupport {
  		// update(sql, bean) : bean을 들고 가면 안됨
 	}
 	
+	// 특정 레코드 읽기
+	public MemberDTO getMember(String id) {
+	      String sql = "select * from membertab where id=?";
+	      
+	      MemberDTO dto = (MemberDTO)getJdbcTemplate().queryForObject(sql, new Object[] {id}, new RowMapper() {
+	         @Override
+	         public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+	        	 MemberDTO member = new MemberDTO();
+	            member.setId(rs.getString("id"));
+	            member.setName(rs.getString("name"));
+	            member.setPasswd(rs.getString("passwd"));
+	            member.setReg_date(rs.getString("reg_date"));
+	            return member;
+	         }
+	      });
+	      return dto;
+	   }
+	
 	// 수정
-	
-	
+	public void upData(MemberBean bean) {
+		String sql = "update membertab set name=?, passwd=? where id=?";
+		getJdbcTemplate().update(sql, new Object[] {bean.getName(), bean.getPasswd(), bean.getId()});
+	}
 	// 삭제
- }
+	public void delData(String id) {
+		String sql = "delete from membertab where id=?";
+		getJdbcTemplate().update(sql, new Object[] {id});
+	}
+}
