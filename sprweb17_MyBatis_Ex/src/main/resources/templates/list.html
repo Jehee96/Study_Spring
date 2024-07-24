@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>평가 등급</title>
+</head>
+<body>
+<h1>평가 등급</h1>
+<form th:action="@{/search}" method="post">
+<b>평가 대상 : </b>
+<select name="option">
+    <option value="총무부" selected>총무부</option>
+    <option value="영업부">영업부</option>
+    <option value="전산부">전산부</option>
+    <option value="관리부">관리부</option>
+</select>
+<br><br>
+<b>평가 등급 : </b>
+  <input type="radio" id="ALL" name="rating" value="" checked>
+  <label for="ALL">전체</label>
+  <input type="radio" id="A" name="rating" value="a">
+  <label for="A">A</label>
+  <input type="radio" id="B" name="rating" value="b">
+  <label for="B">B</label>
+  <input type="radio" id="C" name="rating" value="c">
+  <label for="C">C</label>&nbsp;&nbsp;&nbsp;
+  <input type="submit" value="검색">
+</form>
+<br>
+<table border="1">
+	<tr>
+		<th>사번</th>
+		<th>이름</th>
+		<th>직급</th>
+		<th>연봉</th>
+		<th>평가</th>
+	</tr>
+	
+	<tr th:each="jikwon : ${list}">
+		<td th:text="${jikwon.jikwon_no}"></td>
+		<td th:text="${jikwon.jikwon_name}"></td>
+		<td th:text="${jikwon.jikwon_jik}"></td>
+		<td th:text="${jikwon.jikwon_pay}"></td>
+		<td th:text="${jikwon.jikwon_rating}"></td>
+	</tr>
+</table>
+</body>
+</html>

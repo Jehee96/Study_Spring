@@ -16,13 +16,13 @@ public interface DataMapperInterface {
 	List<MemDTO> selectAll();
 	
 	@Select("select * from mem where num=#{num}") // 부분
-	List<MemDTO> selectPart(String num);
+	MemDTO selectPart(String num);
 	
 	@Insert("insert into mem values(#{num},#{name},#{addr})") // 추가
 	int insertData(MemBean bean);
 	
 	@Update("update mem set name=#{name}, addr=#{addr} where num=#{num}") // 수정
-	int updatetData(MemBean bean);
+	int updateData(MemBean bean);
 	
 	@Delete("delete from mem where num=#{num}") // 삭제
 	int deleteData(String num);

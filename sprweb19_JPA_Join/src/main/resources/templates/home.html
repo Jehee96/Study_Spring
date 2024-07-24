@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+a {
+  text-decoration-line: none;
+}
+</style>
+<title>HHHOME</title>
+</head>
+<body>
+	<div class="container" style="text-align: center;">
+		<h1>Main Page</h1>
+		<ul style="list-style: none;">
+			<li><a th:href="@{/member/mlist}">회원정보</a></li><br>
+			<li><a th:href="@{/employee/list}">직원정보</a></li><br>
+			<li><a th:href="@{/jpql}">JPQL 연습장</a></li><br>
+		</ul>
+	</div>
+</body>
+</html>
