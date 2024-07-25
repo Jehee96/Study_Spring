@@ -47,7 +47,8 @@ public class MemberController {
 	
 	@PostMapping("/member/update")
 	public String update(MemberDTO fbean) {
-		mservice.update(fbean);
+		//mservice.update(fbean);
+		mservice.update2(fbean);
 		
 		return "member/update";
 	}
